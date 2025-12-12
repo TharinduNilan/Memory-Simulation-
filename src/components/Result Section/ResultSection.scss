@@ -1,97 +1,87 @@
-.translation-card {
-  background: #ffffff;
-  border: 1px solid #f1f5f9;
+.card {
+  background: #fff;
   border-radius: 0.5rem;
   padding: 1.25rem;
-  margin-top: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
 
   .card-header {
     margin-bottom: 1rem;
 
-    .title {
+    .card-title {
       font-size: 1.125rem;
       font-weight: 600;
       color: #0f172a;
     }
 
-    .description {
+    .card-description {
+      color: #64748b;
       font-size: 0.875rem;
-      color: #475569;
     }
   }
 
   .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    .empty-message {
+      text-align: center;
+      padding: 1.5rem 0;
+      color: #64748b;
+    }
+
+    .translations-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+}
+
+.translation-item {
+  padding: 1rem;
+  border-left: 4px solid;
+  border-radius: 0.5rem;
+
+  &.loaded {
+    border-left-color: #22c55e;
+    background: #f0fdf4;
   }
 
-  .empty-message {
-    text-align: center;
-    padding: 1.5rem 0;
+  &.fault {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+  }
+
+  .translation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
     font-size: 0.875rem;
-    color: #64748b;
-  }
 
-  .translation-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .translation-item {
-    padding: 1.25rem;
-    border-left-width: 4px;
-    border-radius: 0.75rem;
-
-    &.loaded {
-      border-left-color: #22c55e;
-      background: #f0fdf4;
-    }
-
-    &.fault {
-      border-left-color: #ef4444;
-      background: #fff6f6; // softer than your previous #fef2f2
-    }
-
-    .translation-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      font-size: 0.95rem;
-
-      .grid-field {
-        .label {
-          font-size: 0.85rem;
-          color: #64748b;
-          margin-bottom: 2px;
-        }
-
-        .value {
-          font-family: monospace;
-          font-weight: 700;
-          color: #0f172a;
-        }
+    .field {
+      .label {
+        color: #64748b;
+        font-size: 0.85rem;
       }
 
-      .status {
-        grid-column: 1 / -1;
-        margin-top: 0.5rem;
+      .value {
+        font-family: monospace;
         font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 6px;
+        color: #0f172a;
+      }
+    }
 
-        &.loaded {
-          color: #16a34a;
-        }
+    .status {
+      grid-column: 1 / -1;
+      margin-top: 0.25rem;
+      font-weight: 700;
+      font-size: 0.9rem;
 
-        &.fault {
-          color: #dc2626;
-        }
+      &.loaded {
+        color: #16a34a;
+      }
+
+      &.fault {
+        color: #dc2626;
       }
     }
   }
 }
+

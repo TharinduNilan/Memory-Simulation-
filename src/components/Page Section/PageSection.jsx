@@ -1,6 +1,6 @@
 import "./PageSection.scss";
 
-export default function PageSection() {
+export default function PageSection({ pageTable }) {
   return (
     <div className="page-section">
       {/* Configuration details */}
@@ -45,35 +45,16 @@ export default function PageSection() {
         </div>
 
         <div className="page-table-content">
-          <div className="row">
-            <span className="page-label">Page 0</span>
-            <span className="frame-tag loaded">Frame 0</span>
-          </div>
-
-          <div className="row">
-            <span className="page-label">Page 1</span>
-            <span className="frame-tag not-loaded">Not Loaded</span>
-          </div>
-          <div className="row">
-            <span className="page-label">Page 1</span>
-            <span className="frame-tag not-loaded">Not Loaded</span>
-          </div>
-          <div className="row">
-            <span className="page-label">Page 1</span>
-            <span className="frame-tag not-loaded">Not Loaded</span>
-          </div>
-          <div className="row">
-            <span className="page-label">Page 1</span>
-            <span className="frame-tag not-loaded">Not Loaded</span>
-          </div>
-          <div className="row">
-            <span className="page-label">Page 1</span>
-            <span className="frame-tag not-loaded">Not Loaded</span>
-          </div>
-          <div className="row">
-            <span className="page-label">Page 1</span>
-            <span className="frame-tag not-loaded">Not Loaded</span>
-          </div>
+          {Object.entries(pageTable).map(([page, frame]) => (
+            <div className="row">
+              <span className="page-label">Page {page}</span>
+              <span
+                className={`frame-badge ${frame !== null ? "loaded" : "fault"}`}
+              >
+                {frame !== null ? `Frame ${frame}` : "Not Loaded"}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

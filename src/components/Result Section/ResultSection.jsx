@@ -1,43 +1,77 @@
 import "./ResultSection.scss";
 
 export default function ResultSection() {
+
+  const translations = [
+    {
+      id: 1,
+
+    }
+  ]
   return (
-    <div className="translation-card">
+    <div className="card">
       <div className="card-header">
-        <h2 className="title">Translation Results</h2>
-        <p className="description">Last X translations</p>
+        <h3 className="card-title">Translation Results</h3>
+        <p className="card-description">
+          {/* Last {translations.length} translations */}
+          Last 1 translations
+        </p>
       </div>
 
       <div className="card-content">
-        {/* <p className="empty-message">
-          No translations yet. Enter a logical address to begin.
-        </p> */}
+        {translations.length === 0 ? (
+          <p className="empty-message">
+            No translations yet. Enter a logical address to begin.
+          </p>
+        ) : (
+          <div className="translations-list">
+            {translations.map((trans) => (
+              <div
+                key={trans.id}
+                className={`translation-item ${
+                  trans.pageFault ? "fault" : "loaded"
+                }`}
+              >
+                <div className="translation-grid">
+                  <div className="field">
+                    <p className="label">Logical Address</p>
+                    <p className="value">{trans.logicalAddress}</p>
+                  </div>
 
-        <div className={`translation-item fault`}>
-          <div className="translation-grid">
-            <div className="grid-field">
-              <p className="label">Logical Address</p>
-              <p className="value">2000</p>
-            </div>
+                  <div className="field">
+                    <p className="label">Page Number</p>
+                    <p className="value">{trans.pageNumber}</p>
+                  </div>
 
-            <div className="grid-field">
-              <p className="label">Page Number</p>
-              <p className="value">1</p>
-            </div>
+                  <div className="field">
+                    <p className="label">Offset</p>
+                    <p className="value">{trans.offset}</p>
+                  </div>
 
-            <div className="grid-field">
-              <p className="label">Offset</p>
-              <p className="value">976</p>
-            </div>
+                  <div className="field">
+                    <p className="label">Frame Number</p>
+                    <p className="value">
+                      {trans.frameNumber !== null ? trans.frameNumber : "N/A"}
+                    </p>
+                  </div>
 
-            <div className="grid-field">
-              <p className="label">Frame Number</p>
-              <p className="value">N/A</p>
-            </div>
+                  {trans.physicalAddress !== null && (
+                    <div className="field">
+                      <p className="label">Physical Address</p>
+                      <p className="value">{trans.physicalAddress}</p>
+                    </div>
+                  )}
 
-            <div className="status fault">⚠ Page Fault</div>
+                  <div
+                    className={`status ${trans.pageFault ? "fault" : "loaded"}`}
+                  >
+                    {trans.pageFault ? "⚠ Page Fault" : "✓ Page Loaded"}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
