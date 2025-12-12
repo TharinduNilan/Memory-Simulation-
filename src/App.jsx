@@ -29,8 +29,9 @@ function App() {
     if (!logicalAddress.trim()) return;
 
     const logAddr = Number.parseInt(logicalAddress, 10);
-    if (isNaN(logAddr) || logAddr < 0 || logAddr >= 8192) {
-      alert("Please enter a valid logical address (0-8192)");
+
+    if (isNaN(logAddr) || logAddr < 0 || logAddr >= 8191) {
+      alert("Please enter a valid logical address (0-8191)");
       return;
     }
 
@@ -88,7 +89,7 @@ function App() {
         <div className="card-container">
           <div className="card-header">
             <h2 className="card-title">Address Translation</h2>
-            <p className="card-description">Enter logical addresses (0-8192)</p>
+            <p className="card-description">Enter logical addresses (0-8191)</p>
           </div>
           <div className="card-content">
             <input
@@ -110,9 +111,9 @@ function App() {
         {/* body section */}
         <div className="body-section">
           <PageSection pageTable={pageTable} />
-          <MemorySimulation />
+          <MemorySimulation pageTable={pageTable}  />
         </div>
-        <ResultSection />
+        <ResultSection translations={translations}/>
       </div>
     </div>
   );

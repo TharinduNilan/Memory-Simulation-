@@ -1,6 +1,20 @@
 import "./MemorySimulation.scss";
 
-export default function MemorySimulation() {
+export default function MemorySimulation({ pageTable }) {
+  const totalFrames = 4;
+  const PAGE_SIZE = 1024;
+
+  // Create a reverse mapping of frame to page
+  const frameToPage = {};
+  for (let i = 0; i < totalFrames; i++) {
+    frameToPage[i] = null;
+  }
+  Object.entries(pageTable).forEach(([page, frame]) => {
+    if (frame !== null) {
+      frameToPage[frame] = Number.parseInt(page);
+    }
+  });
+
   return (
     <div className="visualization-section">
       <div class="physical-memory-card">
@@ -13,35 +27,22 @@ export default function MemorySimulation() {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
-            <div class="frame-block">
-              <div class="frame-meta">
-                <span class="frame-number">Frame 0</span>
-                <span class="frame-range">0-1023</span>
-              </div>
-              <div class="frame-box loaded">Page 0</div>
-            </div>
+            {Array.from({ length: totalFrames }).map((_, frameNum) => {
+              const pageNum = frameToPage[frameNum];
+              const isLoaded = pageNum !== null;
+              const startAddr = frameNum * PAGE_SIZE;
+              const endAddr = startAddr + PAGE_SIZE - 1;
 
-            <div class="frame-block">
-              <div class="frame-meta">
-                <span class="frame-number">Frame 1</span>
-                <span class="frame-range">1024-2047</span>
-              </div>
-              <div class="frame-box empty">Empty</div>
-            </div>
-            <div class="frame-block">
-              <div class="frame-meta">
-                <span class="frame-number">Frame 1</span>
-                <span class="frame-range">1024-2047</span>
-              </div>
-              <div class="frame-box empty">Empty</div>
-            </div>
-            <div class="frame-block">
-              <div class="frame-meta">
-                <span class="frame-number">Frame 1</span>
-                <span class="frame-range">1024-2047</span>
-              </div>
-              <div class="frame-box empty">Empty</div>
-            </div>
+              return (
+                <div class="frame-block">
+                  <div class="frame-meta">
+                    <span class="frame-number">Frame {frameNum}</span>
+                    <span class="frame-range">{startAddr}-{endAddr}</span>
+                  </div>
+                  <div class="frame-box loaded">{isLoaded ? `Page ${pageNum}` : "Empty"}</div>
+                </div>
+              );
+            })}
           </div>
 
           <div class="legend">

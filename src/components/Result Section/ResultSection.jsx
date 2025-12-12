@@ -1,20 +1,12 @@
 import "./ResultSection.scss";
 
-export default function ResultSection() {
-
-  const translations = [
-    {
-      id: 1,
-
-    }
-  ]
+export default function ResultSection({translations}) {
   return (
     <div className="card">
       <div className="card-header">
         <h3 className="card-title">Translation Results</h3>
         <p className="card-description">
-          {/* Last {translations.length} translations */}
-          Last 1 translations
+          Last {translations.length} translations
         </p>
       </div>
 
