@@ -10,11 +10,6 @@
       0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.06);
 
-    .dark & {
-      background: #0f172a;
-      border-color: #020617;
-    }
-
     /* ------------------------------
        HEADER
     ------------------------------ */
@@ -25,19 +20,11 @@
         font-size: 1.125rem;
         font-weight: 600;
         color: #0f172a;
-
-        .dark & {
-          color: #fff;
-        }
       }
 
       .description {
         font-size: 0.875rem;
         color: #475569;
-
-        .dark & {
-          color: #94a3b8;
-        }
       }
     }
 
@@ -67,19 +54,11 @@
       .frame-number {
         font-weight: 600;
         color: #334155;
-
-        .dark & {
-          color: #cbd5e1;
-        }
       }
 
       .frame-range {
         font-size: 0.75rem;
         color: #64748b;
-
-        .dark & {
-          color: #94a3b8;
-        }
       }
     }
 
@@ -102,24 +81,12 @@
         background: #dbeafe;
         border-color: #60a5fa;
         color: #1e3a8a;
-
-        .dark & {
-          background: #0f172a;
-          border-color: #1e40af;
-          color: #c7d2fe;
-        }
       }
 
       &.empty {
         background: #f1f5f9;
         border-color: #cbd5e1;
         color: #64748b;
-
-        .dark & {
-          background: #1e293b;
-          border-color: #475569;
-          color: #94a3b8;
-        }
       }
     }
 
@@ -133,26 +100,14 @@
       background: #f1f5f9;
       font-size: 0.75rem;
 
-      .dark & {
-        background: #1e293b;
-      }
-
       .legend-title {
         font-weight: 600;
         color: #334155;
-
-        .dark & {
-          color: #cbd5e1;
-        }
       }
 
       .legend-list {
         margin-top: 0.5rem;
         color: #475569;
-
-        .dark & {
-          color: #94a3b8;
-        }
 
         li {
           line-height: 1.25rem;
