@@ -45,10 +45,9 @@ export default function PageSection() {
         </div>
 
         <div className="page-table-content">
-          
           <div className="row">
             <span className="page-label">Page 0</span>
-            <span className="frame-tag not-loaded">Frame 0</span>
+            <span className="frame-tag loaded">Frame 0</span>
           </div>
 
           <div className="row">
